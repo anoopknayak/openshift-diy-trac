@@ -1,0 +1,13 @@
+#!/bin/bash
+# This is a simple build script and will be executed on your CI system if 
+# available.  Otherwise it will execute while your application is stopped
+# before the deploy step.  This script gets executed directly, so it
+# could be python, php, ruby, etc.
+
+TRACDIR=trac
+mkdir $OPENSHIFT_REPO_DIR$TRACDIR
+PYTHONPATH=$OPENSHIFT_REPO_DIR$TRACDIR
+export PYTHONPATH=$OPENSHIFT_REPO_DIR$TRACDIR
+easy_install --install-dir $OPENSHIFT_REPO_DIR$TRACDIR Trac==1.0
+
+$OPENSHIFT_REPO_DIR$TRACDIR/trac-admin $OPENSHIFT_DATA_DIR$OPENSHIFT_APP_NAME initenv $OPENSHIFT_APP_NAME sqlite:$OPENSHIFT_DATA_DIR$OPENSHIFT_APP_NAME/.OPENSHIFT_APP_NAME.db

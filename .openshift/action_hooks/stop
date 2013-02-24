@@ -1,0 +1,19 @@
+#!/bin/bash
+# The logic to stop your application should be put in this script.
+# kill `ps -ef | grep testrubyserver.rb | grep -v grep | awk '{ print $2 }'` > /dev/null 2>&1
+# exit 0
+
+TRACDIR=trac
+PIDFILE=$OPENSHIFT_REPO_DIR$TRACDIR/trac.pid
+
+if [ -a $PIDFILE ]
+        then
+                echo -n $"Stopping $NAME: "
+                kill -9 `cat ${PIDFILE}`
+                RETVAL=$?
+                echo
+                [ $RETVAL = 0 ] && rm -f ${LOCKFILE} ${PIDFILE}
+        else
+                echo "tracd appears not to be running."
+        fi
+}
