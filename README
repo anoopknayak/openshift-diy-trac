@@ -19,7 +19,7 @@ cd into the git dir:
 cd openshift-diy-trac
 
 Add your openshift application git repo as a remote:
-git remote add openshift [your openshift app URL here]
+git remote add openshift [your openshift git repo URL here]
 
 Overwrite your openshift repo:
 git push -f openshift
