@@ -16,4 +16,3 @@ if [ -a $PIDFILE ]
         else
                 echo "tracd appears not to be running."
         fi
-}
